@@ -1,5 +1,8 @@
+from random import choice
+
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.views.generic.base import RedirectView
 
 
 def redirect_view(request):    
@@ -24,3 +27,16 @@ def redirect_view(request):
 
 def redirect_success_view(request):
     return HttpResponse("Redirect success")
+
+
+class SearchRedirectView(RedirectView):
+    url = 'https://google.com/?q=%(term)s'
+
+
+class RandomAnimalView(RedirectView):
+
+    animal_urls = ['/dog/', '/cat/', '/parrot/']
+    is_permanent = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        return choice(self.animal_urls)
