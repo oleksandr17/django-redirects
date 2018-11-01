@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import redirect_view
+from .views import redirect_success_view, redirect_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('redirect/', redirect_view)
+    path('redirect/', redirect_view),
+    path('redirect-success/', redirect_success_view, name='redirect-success'),
 ]
